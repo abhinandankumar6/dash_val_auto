@@ -1,0 +1,481 @@
+{
+  "dashboard": "Sales Overview",
+  "status": "FAILED",
+  "platform": "generic",
+  "summary": {
+    "validation_status": "FAILED",
+    "failed_checks": 2,
+    "warning_checks": 4,
+    "info_checks": 0,
+    "category_counts": {
+      "ui": 6
+    },
+    "workflow": {
+      "source": "heuristic",
+      "keywords": [
+        "this",
+        "parent"
+      ],
+      "prioritized_signatures": [
+        "kpi_card|total revenue|32|92.0|598|104",
+        "unknown|revenue by region|650|92.0|598|104",
+        "table|region revenue|32|212.0|1216|135"
+      ],
+      "rationale": [
+        "Prioritized visuals matching keywords: this, parent",
+        "Page title: Sales Overview"
+      ]
+    },
+    "navigation_nodes": 4
+  },
+  "workflow": {
+    "source": "heuristic",
+    "keywords": [
+      "this",
+      "parent"
+    ],
+    "prioritized_signatures": [
+      "kpi_card|total revenue|32|92.0|598|104",
+      "unknown|revenue by region|650|92.0|598|104",
+      "table|region revenue|32|212.0|1216|135"
+    ],
+    "rationale": [
+      "Prioritized visuals matching keywords: this, parent",
+      "Page title: Sales Overview"
+    ]
+  },
+  "navigation_tree": {
+    "label": "Sales Overview",
+    "chart_type": "dashboard",
+    "action": "open_dashboard",
+    "depth": 0,
+    "path": [
+      "Sales Overview"
+    ],
+    "page_title": "Sales Overview",
+    "target_url": "http://127.0.0.1:9000/index.html",
+    "state_hash": "3d0ed06f54299b2125ac02b3002c0b6a67f3eb65d43cda4562ade0d1691e0626",
+    "screenshot_path": "output/screenshots/fa874932-ffae-4c66-83bd-05999825404e/dashboard-root.png",
+    "snapshot": null,
+    "metadata": {
+      "platform_adapter": "generic",
+      "workflow": {
+        "source": "heuristic",
+        "keywords": [
+          "this",
+          "parent"
+        ],
+        "prioritized_signatures": [
+          "kpi_card|total revenue|32|92.0|598|104",
+          "unknown|revenue by region|650|92.0|598|104",
+          "table|region revenue|32|212.0|1216|135"
+        ],
+        "rationale": [
+          "Prioritized visuals matching keywords: this, parent",
+          "Page title: Sales Overview"
+        ]
+      }
+    },
+    "findings": [],
+    "children": [
+      {
+        "label": "Total Revenue",
+        "chart_type": "kpi_card",
+        "action": "inspect_visual",
+        "depth": 1,
+        "path": [
+          "Sales Overview",
+          "Total Revenue"
+        ],
+        "page_title": "http://127.0.0.1:9000/index.html",
+        "target_url": "http://127.0.0.1:9000/index.html",
+        "state_hash": null,
+        "screenshot_path": "output/screenshots/fa874932-ffae-4c66-83bd-05999825404e/total-revenue-v-1.png",
+        "snapshot": {
+          "dom_id": "v-1",
+          "label": "Total Revenue",
+          "chart_type": "kpi_card",
+          "clickable": true,
+          "title": null,
+          "subtitle": null,
+          "raw_text": [
+            "Total Revenue",
+            "$1,000.00"
+          ],
+          "numeric_texts": [
+            "$1,000.00"
+          ],
+          "numeric_values": [
+            1000.0
+          ],
+          "primary_value": 1000.0,
+          "primary_value_text": "$1,000.00",
+          "table_rows": [],
+          "grouped_values": [],
+          "bbox": {
+            "x": 32,
+            "y": 92.4375,
+            "width": 598,
+            "height": 104
+          },
+          "ui": {
+            "font_family": "Inter, sans-serif",
+            "title_font_size_px": 16,
+            "title_font_weight": 400,
+            "padding_px": 20,
+            "margin_px": 0,
+            "text_align": "start",
+            "numeric_column_right_aligned": false,
+            "currency_symbols": [
+              "$"
+            ],
+            "percent_tokens": [],
+            "date_tokens": [],
+            "legend_items": [],
+            "axis_labels": [],
+            "column_headers": [],
+            "gridline_count": 0
+          },
+          "metadata": {
+            "legend_items": [],
+            "axis_labels": [],
+            "column_headers": []
+          }
+        },
+        "metadata": {
+          "clickable": true
+        },
+        "findings": [
+          {
+            "category": "ui",
+            "severity": "warning",
+            "code": "title_font_weight_mismatch",
+            "message": "Title font weight is lighter than expected for Total Revenue.",
+            "path": [
+              "Sales Overview",
+              "Total Revenue"
+            ],
+            "expected": "600",
+            "actual": "400",
+            "metadata": {}
+          },
+          {
+            "category": "ui",
+            "severity": "error",
+            "code": "missing_title",
+            "message": "kpi_card is missing a visible title.",
+            "path": [
+              "Sales Overview",
+              "Total Revenue"
+            ],
+            "expected": null,
+            "actual": null,
+            "metadata": {}
+          }
+        ],
+        "children": []
+      },
+      {
+        "label": "Revenue by Region",
+        "chart_type": "unknown",
+        "action": "inspect_visual",
+        "depth": 1,
+        "path": [
+          "Sales Overview",
+          "Revenue by Region"
+        ],
+        "page_title": "http://127.0.0.1:9000/index.html",
+        "target_url": "http://127.0.0.1:9000/index.html",
+        "state_hash": null,
+        "screenshot_path": "output/screenshots/fa874932-ffae-4c66-83bd-05999825404e/revenue-by-region-v-2.png",
+        "snapshot": {
+          "dom_id": "v-2",
+          "label": "Revenue by Region",
+          "chart_type": "unknown",
+          "clickable": true,
+          "title": null,
+          "subtitle": null,
+          "raw_text": [
+            "Revenue by Region",
+            "Click to drill into regional breakdown."
+          ],
+          "numeric_texts": [],
+          "numeric_values": [],
+          "primary_value": null,
+          "primary_value_text": null,
+          "table_rows": [],
+          "grouped_values": [],
+          "bbox": {
+            "x": 650,
+            "y": 92.4375,
+            "width": 598,
+            "height": 104
+          },
+          "ui": {
+            "font_family": "Inter, sans-serif",
+            "title_font_size_px": 16,
+            "title_font_weight": 400,
+            "padding_px": 20,
+            "margin_px": 0,
+            "text_align": "start",
+            "numeric_column_right_aligned": false,
+            "currency_symbols": [],
+            "percent_tokens": [],
+            "date_tokens": [],
+            "legend_items": [],
+            "axis_labels": [],
+            "column_headers": [],
+            "gridline_count": 0
+          },
+          "metadata": {
+            "legend_items": [],
+            "axis_labels": [],
+            "column_headers": []
+          }
+        },
+        "metadata": {
+          "clickable": true
+        },
+        "findings": [
+          {
+            "category": "ui",
+            "severity": "warning",
+            "code": "title_font_weight_mismatch",
+            "message": "Title font weight is lighter than expected for Revenue by Region.",
+            "path": [
+              "Sales Overview",
+              "Revenue by Region"
+            ],
+            "expected": "600",
+            "actual": "400",
+            "metadata": {}
+          }
+        ],
+        "children": []
+      },
+      {
+        "label": "Region Revenue",
+        "chart_type": "table",
+        "action": "inspect_visual",
+        "depth": 1,
+        "path": [
+          "Sales Overview",
+          "Region Revenue"
+        ],
+        "page_title": "http://127.0.0.1:9000/index.html",
+        "target_url": "http://127.0.0.1:9000/index.html",
+        "state_hash": null,
+        "screenshot_path": "output/screenshots/fa874932-ffae-4c66-83bd-05999825404e/region-revenue-v-3.png",
+        "snapshot": {
+          "dom_id": "v-3",
+          "label": "Region Revenue",
+          "chart_type": "table",
+          "clickable": false,
+          "title": null,
+          "subtitle": null,
+          "raw_text": [
+            "Region Revenue",
+            "East $400.00",
+            "West $600.00"
+          ],
+          "numeric_texts": [
+            "East $400.00",
+            "West $600.00"
+          ],
+          "numeric_values": [
+            400.0,
+            600.0
+          ],
+          "primary_value": 600.0,
+          "primary_value_text": "West $600.00",
+          "table_rows": [
+            [
+              "Region",
+              "Revenue"
+            ],
+            [
+              "East",
+              "$400.00"
+            ],
+            [
+              "West",
+              "$600.00"
+            ]
+          ],
+          "grouped_values": [
+            {
+              "label": "East",
+              "value": 400.0,
+              "raw_value": "$400.00"
+            },
+            {
+              "label": "West",
+              "value": 600.0,
+              "raw_value": "$600.00"
+            }
+          ],
+          "bbox": {
+            "x": 32,
+            "y": 212.4375,
+            "width": 1216,
+            "height": 135
+          },
+          "ui": {
+            "font_family": "Inter, sans-serif",
+            "title_font_size_px": 16,
+            "title_font_weight": 400,
+            "padding_px": 0,
+            "margin_px": 16,
+            "text_align": "start",
+            "numeric_column_right_aligned": true,
+            "currency_symbols": [
+              "$"
+            ],
+            "percent_tokens": [],
+            "date_tokens": [],
+            "legend_items": [],
+            "axis_labels": [],
+            "column_headers": [
+              "Region",
+              "Revenue"
+            ],
+            "gridline_count": 0
+          },
+          "metadata": {
+            "legend_items": [],
+            "axis_labels": [],
+            "column_headers": [
+              "Region",
+              "Revenue"
+            ]
+          }
+        },
+        "metadata": {
+          "clickable": false
+        },
+        "findings": [
+          {
+            "category": "ui",
+            "severity": "warning",
+            "code": "title_font_weight_mismatch",
+            "message": "Title font weight is lighter than expected for Region Revenue.",
+            "path": [
+              "Sales Overview",
+              "Region Revenue"
+            ],
+            "expected": "600",
+            "actual": "400",
+            "metadata": {}
+          },
+          {
+            "category": "ui",
+            "severity": "warning",
+            "code": "padding_too_small",
+            "message": "Padding is below the configured minimum for Region Revenue.",
+            "path": [
+              "Sales Overview",
+              "Region Revenue"
+            ],
+            "expected": ">= 8.0px",
+            "actual": "0px",
+            "metadata": {}
+          },
+          {
+            "category": "ui",
+            "severity": "error",
+            "code": "missing_title",
+            "message": "table is missing a visible title.",
+            "path": [
+              "Sales Overview",
+              "Region Revenue"
+            ],
+            "expected": null,
+            "actual": null,
+            "metadata": {}
+          }
+        ],
+        "children": []
+      }
+    ]
+  },
+  "findings": [
+    {
+      "category": "ui",
+      "severity": "warning",
+      "code": "title_font_weight_mismatch",
+      "message": "Title font weight is lighter than expected for Total Revenue.",
+      "path": [
+        "Sales Overview",
+        "Total Revenue"
+      ],
+      "expected": "600",
+      "actual": "400",
+      "metadata": {}
+    },
+    {
+      "category": "ui",
+      "severity": "error",
+      "code": "missing_title",
+      "message": "kpi_card is missing a visible title.",
+      "path": [
+        "Sales Overview",
+        "Total Revenue"
+      ],
+      "expected": null,
+      "actual": null,
+      "metadata": {}
+    },
+    {
+      "category": "ui",
+      "severity": "warning",
+      "code": "title_font_weight_mismatch",
+      "message": "Title font weight is lighter than expected for Revenue by Region.",
+      "path": [
+        "Sales Overview",
+        "Revenue by Region"
+      ],
+      "expected": "600",
+      "actual": "400",
+      "metadata": {}
+    },
+    {
+      "category": "ui",
+      "severity": "warning",
+      "code": "title_font_weight_mismatch",
+      "message": "Title font weight is lighter than expected for Region Revenue.",
+      "path": [
+        "Sales Overview",
+        "Region Revenue"
+      ],
+      "expected": "600",
+      "actual": "400",
+      "metadata": {}
+    },
+    {
+      "category": "ui",
+      "severity": "warning",
+      "code": "padding_too_small",
+      "message": "Padding is below the configured minimum for Region Revenue.",
+      "path": [
+        "Sales Overview",
+        "Region Revenue"
+      ],
+      "expected": ">= 8.0px",
+      "actual": "0px",
+      "metadata": {}
+    },
+    {
+      "category": "ui",
+      "severity": "error",
+      "code": "missing_title",
+      "message": "table is missing a visible title.",
+      "path": [
+        "Sales Overview",
+        "Region Revenue"
+      ],
+      "expected": null,
+      "actual": null,
+      "metadata": {}
+    }
+  ]
+}

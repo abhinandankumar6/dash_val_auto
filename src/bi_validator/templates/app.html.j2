@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ app_name }}</title>
+    <style>
+      :root {
+        --ink: #102339;
+        --muted: #5d728a;
+        --line: rgba(16, 35, 57, 0.12);
+        --surface: rgba(255, 255, 255, 0.86);
+        --surface-strong: #ffffff;
+        --accent: #0b7a69;
+        --accent-2: #da9d21;
+        --danger: #b42318;
+        --shadow: 0 18px 40px rgba(16, 35, 57, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Avenir Next", "Segoe UI", sans-serif;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at top left, rgba(11, 122, 105, 0.16), transparent 26%),
+          radial-gradient(circle at top right, rgba(218, 157, 33, 0.18), transparent 28%),
+          linear-gradient(180deg, #f4f7f1 0%, #ecf3ff 100%);
+      }
+
+      .shell {
+        width: min(1280px, calc(100vw - 32px));
+        margin: 24px auto 56px;
+      }
+
+      .hero,
+      .layout {
+        display: grid;
+        gap: 20px;
+      }
+
+      .hero {
+        grid-template-columns: 1.25fr 0.95fr;
+        margin-bottom: 20px;
+      }
+
+      .layout {
+        grid-template-columns: minmax(0, 1.08fr) minmax(360px, 0.92fr);
+        align-items: start;
+      }
+
+      .panel {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(18px);
+      }
+
+      .hero-main,
+      .hero-side,
+      .card {
+        padding: 24px;
+      }
+
+      .hero-side {
+        display: grid;
+        gap: 14px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: rgba(11, 122, 105, 0.1);
+        color: var(--accent);
+        font-size: 0.86rem;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+      }
+
+      h1 {
+        margin: 16px 0 12px;
+        max-width: 12ch;
+        font-size: clamp(2.4rem, 6vw, 4.2rem);
+        line-height: 0.94;
+        letter-spacing: -0.05em;
+      }
+
+      .hero p,
+      .muted {
+        color: var(--muted);
+      }
+
+      .hero p {
+        max-width: 58ch;
+        margin: 0;
+        line-height: 1.6;
+      }
+
+      .stat {
+        padding: 18px;
+        border-radius: 18px;
+        border: 1px solid var(--line);
+        background: var(--surface-strong);
+      }
+
+      .stat strong {
+        display: block;
+        margin-top: 10px;
+        font-size: 1.7rem;
+      }
+
+      .section-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 12px;
+        margin-bottom: 18px;
+      }
+
+      .section-head h2,
+      .section-head h3 {
+        margin: 0;
+        font-size: 1.2rem;
+      }
+
+      .section-head p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      form,
+      .stack,
+      .login-fields,
+      .result-shell,
+      .runs,
+      .issues,
+      .tree {
+        display: grid;
+        gap: 16px;
+      }
+
+      .field-grid,
+      .summary-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .field,
+      .field-full {
+        display: grid;
+        gap: 8px;
+      }
+
+      .field-full {
+        grid-column: 1 / -1;
+      }
+
+      label {
+        font-size: 0.9rem;
+        font-weight: 700;
+      }
+
+      input,
+      select,
+      textarea,
+      button {
+        font: inherit;
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+        border: 1px solid rgba(16, 35, 57, 0.14);
+        border-radius: 16px;
+        padding: 13px 14px;
+        background: rgba(255, 255, 255, 0.92);
+        color: var(--ink);
+      }
+
+      input:focus,
+      select:focus,
+      textarea:focus {
+        outline: none;
+        border-color: rgba(11, 122, 105, 0.58);
+        box-shadow: 0 0 0 4px rgba(11, 122, 105, 0.12);
+      }
+
+      textarea {
+        min-height: 112px;
+        resize: vertical;
+      }
+
+      .toggle {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        padding: 16px 18px;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.78);
+      }
+
+      .toggle input {
+        width: 20px;
+        height: 20px;
+        margin: 0;
+      }
+
+      .login-fields {
+        display: none;
+      }
+
+      .login-fields.enabled {
+        display: grid;
+      }
+
+      .hint {
+        color: var(--muted);
+        font-size: 0.88rem;
+        line-height: 1.55;
+      }
+
+      .actions,
+      .links {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .button {
+        appearance: none;
+        border: none;
+        border-radius: 999px;
+        padding: 14px 18px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .button:disabled {
+        opacity: 0.55;
+        cursor: wait;
+      }
+
+      .button-primary {
+        background: linear-gradient(135deg, var(--accent), #0a8a73);
+        color: #fff;
+        box-shadow: 0 14px 28px rgba(11, 122, 105, 0.22);
+      }
+
+      .button-secondary {
+        background: rgba(16, 35, 57, 0.07);
+        color: var(--ink);
+      }
+
+      .banner {
+        display: none;
+        padding: 14px 16px;
+        border-radius: 18px;
+        font-weight: 700;
+      }
+
+      .banner.show {
+        display: block;
+      }
+
+      .banner.loading {
+        background: rgba(11, 122, 105, 0.12);
+        color: var(--accent);
+      }
+
+      .banner.error {
+        background: rgba(180, 35, 24, 0.12);
+        color: var(--danger);
+      }
+
+      .result-summary {
+        display: none;
+      }
+
+      .result-summary.show {
+        display: grid;
+      }
+
+      .mini,
+      .issue,
+      .run-row {
+        padding: 16px;
+        border-radius: 18px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.84);
+      }
+
+      .mini strong {
+        display: block;
+        margin-top: 8px;
+        font-size: 1.5rem;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        font-size: 0.86rem;
+        font-weight: 700;
+      }
+
+      .pill.COMPLETED {
+        background: rgba(11, 122, 105, 0.12);
+        color: var(--accent);
+      }
+
+      .pill.FAILED,
+      .pill.PENDING,
+      .pill.RUNNING {
+        background: rgba(180, 35, 24, 0.12);
+        color: var(--danger);
+      }
+
+      .links a,
+      .run-row a {
+        color: var(--accent);
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .tree ul {
+        margin: 0;
+        padding-left: 18px;
+      }
+
+      .run-row strong,
+      .issue strong {
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      @media (max-width: 1024px) {
+        .hero,
+        .layout {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .shell {
+          width: min(100vw - 20px, 1280px);
+          margin: 12px auto 28px;
+        }
+
+        .hero-main,
+        .hero-side,
+        .card {
+          padding: 20px;
+        }
+
+        .field-grid,
+        .summary-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <section class="hero">
+        <div class="panel hero-main">
+          <div class="eyebrow">Validation Studio</div>
+          <h1>Paste URL, selectors, and credentials into the app.</h1>
+          <p>
+            Launch protected dashboard validations directly from the browser UI. Use inline selectors for the current
+            run, keep YAML optional, and jump from the result into the generated report without leaving the app.
+          </p>
+        </div>
+        <div class="panel hero-side">
+          <div class="stat">
+            <div class="muted">Recommended path</div>
+            <strong>Direct launch</strong>
+            <div class="hint">Best when you are pasting live credentials. The request executes immediately and returns the full result.</div>
+          </div>
+          <div class="stat">
+            <div class="muted">Current app surfaces</div>
+            <strong>/ · /docs · /api/v1</strong>
+            <div class="hint">Use this page for setup and reports. Keep Swagger for raw API debugging.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="layout">
+        <div class="panel card">
+          <div class="section-head">
+            <div>
+              <h2>Launch Validation</h2>
+              <p>Configure the dashboard and optional login automation.</p>
+            </div>
+          </div>
+
+          <form id="launch-form">
+            <div class="field-grid">
+              <div class="field">
+                <label for="dashboard_name">Dashboard name</label>
+                <input id="dashboard_name" type="text" value="Sales Overview" required />
+              </div>
+              <div class="field">
+                <label for="platform">Platform</label>
+                <select id="platform">
+                  <option value="generic">Generic / Custom</option>
+                  <option value="tableau">Tableau</option>
+                  <option value="powerbi">Power BI</option>
+                  <option value="looker">Looker</option>
+                </select>
+              </div>
+              <div class="field-full">
+                <label for="dashboard_url">Dashboard URL</label>
+                <input id="dashboard_url" type="url" placeholder="https://bi.example.com/dashboard" required />
+              </div>
+              <div class="field-full">
+                <label for="prompt">Validation prompt</label>
+                <textarea id="prompt">Validate this dashboard and verify that drilldowns match parent totals.</textarea>
+              </div>
+              <div class="field">
+                <label for="rules_path">Rules path</label>
+                <input id="rules_path" type="text" value="{{ default_rules_path }}" />
+              </div>
+              <div class="field">
+                <label for="max_depth">Max depth</label>
+                <input id="max_depth" type="number" min="1" max="8" value="3" />
+              </div>
+            </div>
+
+            <div class="toggle">
+              <div>
+                <strong>Protected dashboard login</strong>
+                <div class="hint">Enable this when the dashboard requires a username/password flow before the KPI page appears.</div>
+              </div>
+              <input id="login_enabled" type="checkbox" />
+            </div>
+
+            <div id="login-fields" class="login-fields">
+              <div class="field-grid">
+                <div class="field-full">
+                  <label for="login_url">Login URL override</label>
+                  <input id="login_url" type="url" placeholder="Optional. Leave blank if login happens on the dashboard URL." />
+                </div>
+                <div class="field">
+                  <label for="username">Username</label>
+                  <input id="username" type="text" autocomplete="username" />
+                </div>
+                <div class="field">
+                  <label for="password">Password</label>
+                  <input id="password" type="password" autocomplete="current-password" />
+                </div>
+                <div class="field">
+                  <label for="username_selector">Username selector</label>
+                  <input id="username_selector" type="text" placeholder="input[name='username']" />
+                </div>
+                <div class="field">
+                  <label for="password_selector">Password selector</label>
+                  <input id="password_selector" type="text" placeholder="input[name='password']" />
+                </div>
+                <div class="field">
+                  <label for="submit_selector">Submit selector</label>
+                  <input id="submit_selector" type="text" placeholder="button[type='submit']" />
+                </div>
+                <div class="field">
+                  <label for="success_selector">Post-login wait selector</label>
+                  <input id="success_selector" type="text" placeholder="[data-testid='dashboard-root']" />
+                </div>
+                <div class="field-full">
+                  <label for="back_selectors">Back selectors</label>
+                  <textarea id="back_selectors" placeholder="One selector per line"></textarea>
+                </div>
+                <div class="field-full">
+                  <label for="ignore_selectors">Ignore selectors</label>
+                  <textarea id="ignore_selectors" placeholder="One selector per line"></textarea>
+                </div>
+              </div>
+            </div>
+
+            <div class="actions">
+              <button id="submit-button" class="button button-primary" type="submit">Run Direct Validation</button>
+              <button id="reset-button" class="button button-secondary" type="button">Reset</button>
+            </div>
+            <div class="hint">Credentials are used to build the inline login flow for this run. They are not stored in the dashboard run record.</div>
+          </form>
+
+          <div id="banner" class="banner"></div>
+        </div>
+
+        <div class="result-shell">
+          <div class="panel card">
+            <div class="section-head">
+              <div>
+                <h3>Current Result</h3>
+                <p>Run summary, report links, and top findings.</p>
+              </div>
+            </div>
+            <div id="result-summary" class="result-summary">
+              <div class="summary-grid">
+                <div class="mini">
+                  <div class="muted">Run status</div>
+                  <div id="result-status"></div>
+                </div>
+                <div class="mini">
+                  <div class="muted">Navigation nodes</div>
+                  <strong id="result-nodes">0</strong>
+                </div>
+                <div class="mini">
+                  <div class="muted">Failed checks</div>
+                  <strong id="result-failed">0</strong>
+                </div>
+                <div class="mini">
+                  <div class="muted">Warnings</div>
+                  <strong id="result-warnings">0</strong>
+                </div>
+              </div>
+              <div id="report-links" class="links"></div>
+              <div>
+                <strong>Top issues</strong>
+                <div id="issues" class="issues"></div>
+              </div>
+              <div>
+                <strong>Navigation tree</strong>
+                <div id="tree" class="tree"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel card">
+            <div class="section-head">
+              <div>
+                <h3>Recent Runs</h3>
+                <p>Latest validations from the API.</p>
+              </div>
+              <button id="refresh-runs" class="button button-secondary" type="button">Refresh</button>
+            </div>
+            <div id="runs" class="runs"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      const apiPrefix = "{{ api_prefix }}";
+      const form = document.getElementById("launch-form");
+      const loginToggle = document.getElementById("login_enabled");
+      const loginFields = document.getElementById("login-fields");
+      const banner = document.getElementById("banner");
+      const submitButton = document.getElementById("submit-button");
+      const resultSummary = document.getElementById("result-summary");
+      const reportLinks = document.getElementById("report-links");
+      const issues = document.getElementById("issues");
+      const tree = document.getElementById("tree");
+      const runs = document.getElementById("runs");
+
+      function lines(value) {
+        return value.split("\n").map((item) => item.trim()).filter(Boolean);
+      }
+
+      function setBanner(message, kind) {
+        banner.textContent = message;
+        banner.className = `banner show ${kind}`;
+      }
+
+      function clearBanner() {
+        banner.className = "banner";
+        banner.textContent = "";
+      }
+
+      function renderTree(node) {
+        const root = document.createElement("ul");
+        const item = document.createElement("li");
+        item.innerHTML = `<strong>${node.label}</strong> <span class="muted">(${node.chart_type})</span>`;
+        if (node.children && node.children.length) {
+          const children = document.createElement("ul");
+          node.children.forEach((child) => {
+            children.appendChild(renderTree(child).firstChild);
+          });
+          item.appendChild(children);
+        }
+        root.appendChild(item);
+        return root;
+      }
+
+      function collectFindings(node, bucket) {
+        (node.findings || []).forEach((finding) => bucket.push(finding));
+        (node.children || []).forEach((child) => collectFindings(child, bucket));
+      }
+
+      function renderRun(run) {
+        resultSummary.classList.add("show");
+        document.getElementById("result-status").innerHTML = `<span class="pill ${run.status}">${run.status}</span>`;
+        document.getElementById("result-nodes").textContent = String(run.summary?.navigation_nodes || 0);
+        document.getElementById("result-failed").textContent = String(run.summary?.failed_checks || 0);
+        document.getElementById("result-warnings").textContent = String(run.summary?.warning_checks || 0);
+
+        reportLinks.innerHTML = `
+          <a href="${apiPrefix}/validation-runs/${run.id}/reports/html" target="_blank" rel="noreferrer">Open HTML report</a>
+          <a href="${apiPrefix}/validation-runs/${run.id}/reports/json" target="_blank" rel="noreferrer">JSON</a>
+          <a href="${apiPrefix}/validation-runs/${run.id}/reports/csv" target="_blank" rel="noreferrer">CSV</a>
+        `;
+
+        const findings = [];
+        if (run.navigation_tree && run.navigation_tree.label) {
+          collectFindings(run.navigation_tree, findings);
+        }
+        issues.innerHTML = findings.slice(0, 6).map((finding) => `
+          <div class="issue">
+            <strong>${finding.code}</strong>
+            <div>${finding.message}</div>
+            <div class="muted">${finding.path.join(" -> ")}</div>
+          </div>
+        `).join("") || `
+          <div class="issue">
+            <strong>No findings</strong>
+            <div class="muted">This run completed without recorded violations.</div>
+          </div>
+        `;
+
+        tree.innerHTML = "";
+        if (run.navigation_tree && run.navigation_tree.label) {
+          tree.appendChild(renderTree(run.navigation_tree));
+        }
+      }
+
+      async function loadRuns() {
+        const response = await fetch(`${apiPrefix}/validation-runs`);
+        const data = await response.json();
+        runs.innerHTML = data.map((run) => `
+          <div class="run-row">
+            <strong>${run.dashboard_name}</strong>
+            <div class="muted">${run.platform} · ${run.status}</div>
+            <div class="links">
+              <a href="${apiPrefix}/validation-runs/${run.id}" target="_blank" rel="noreferrer">Run JSON</a>
+              <a href="${apiPrefix}/validation-runs/${run.id}/reports/html" target="_blank" rel="noreferrer">HTML report</a>
+            </div>
+          </div>
+        `).join("") || `
+          <div class="run-row">
+            <strong>No runs yet</strong>
+            <div class="muted">Launch a validation to populate this list.</div>
+          </div>
+        `;
+      }
+
+      loginToggle.addEventListener("change", () => {
+        loginFields.classList.toggle("enabled", loginToggle.checked);
+      });
+
+      document.getElementById("reset-button").addEventListener("click", () => {
+        form.reset();
+        loginFields.classList.remove("enabled");
+        clearBanner();
+        resultSummary.classList.remove("show");
+      });
+
+      document.getElementById("refresh-runs").addEventListener("click", loadRuns);
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        clearBanner();
+        submitButton.disabled = true;
+        setBanner("Running validation. A browser session is opening for the target dashboard.", "loading");
+
+        const payload = {
+          dashboard_name: document.getElementById("dashboard_name").value.trim(),
+          dashboard_url: document.getElementById("dashboard_url").value.trim(),
+          platform: document.getElementById("platform").value,
+          prompt: document.getElementById("prompt").value.trim(),
+          rules_path: document.getElementById("rules_path").value.trim(),
+          max_depth: Number(document.getElementById("max_depth").value || 3),
+        };
+
+        if (loginToggle.checked) {
+          const loginSteps = [];
+          const loginUrl = document.getElementById("login_url").value.trim();
+          const username = document.getElementById("username").value;
+          const password = document.getElementById("password").value;
+          const usernameSelector = document.getElementById("username_selector").value.trim();
+          const passwordSelector = document.getElementById("password_selector").value.trim();
+          const submitSelector = document.getElementById("submit_selector").value.trim();
+          const successSelector = document.getElementById("success_selector").value.trim();
+
+          if (loginUrl) {
+            loginSteps.push({ action: "goto", value: loginUrl });
+          }
+          if (username && usernameSelector) {
+            loginSteps.push({ action: "fill", selector: usernameSelector, credential_key: "username" });
+          }
+          if (password && passwordSelector) {
+            loginSteps.push({ action: "fill", selector: passwordSelector, credential_key: "password" });
+          }
+          if (submitSelector) {
+            loginSteps.push({ action: "click", selector: submitSelector });
+          }
+          if (successSelector) {
+            loginSteps.push({ action: "wait_for", selector: successSelector });
+          }
+
+          payload.credentials = {};
+          if (username) payload.credentials.username = username;
+          if (password) payload.credentials.password = password;
+          payload.inline_dashboard_config = {
+            login_steps: loginSteps,
+            back_selectors: lines(document.getElementById("back_selectors").value),
+            ignore_selectors: lines(document.getElementById("ignore_selectors").value),
+          };
+        }
+
+        try {
+          const response = await fetch(`${apiPrefix}/validation-runs/launch`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+          if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(errorText || `Request failed with status ${response.status}`);
+          }
+          const data = await response.json();
+          document.getElementById("password").value = "";
+          renderRun(data);
+          await loadRuns();
+          setBanner(`Validation finished with status ${data.status}.`, data.status === "COMPLETED" ? "loading" : "error");
+        } catch (error) {
+          setBanner(`Launch failed: ${error.message}`, "error");
+        } finally {
+          submitButton.disabled = false;
+        }
+      });
+
+      loadRuns();
+    </script>
+  </body>
+</html>

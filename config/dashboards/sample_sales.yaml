@@ -1,0 +1,24 @@
+name: "Sales Overview"
+url: "https://example-bi.local/sales-overview"
+platform: "generic"
+login_steps:
+  - action: "fill"
+    selector: "input[name='username']"
+    env: "DASHBOARD_USERNAME"
+  - action: "fill"
+    selector: "input[name='password']"
+    env: "DASHBOARD_PASSWORD"
+  - action: "click"
+    selector: "button[type='submit']"
+  - action: "wait_for"
+    selector: "[data-testid='dashboard-root']"
+back_selectors:
+  - "button[aria-label='Back']"
+  - "[data-testid='breadcrumb-back']"
+ignore_selectors:
+  - ".help-button"
+  - ".floating-filter-panel"
+target_hints:
+  - "revenue"
+  - "region"
+  - "product"

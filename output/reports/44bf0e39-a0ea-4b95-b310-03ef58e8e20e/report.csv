@@ -1,0 +1,7 @@
+category,severity,code,message,expected,actual,path
+ui,warning,title_font_weight_mismatch,Title font weight is lighter than expected for Total Revenue.,600,400,Sales Overview -> Total Revenue
+ui,error,missing_title,kpi_card is missing a visible title.,,,Sales Overview -> Total Revenue
+ui,warning,title_font_weight_mismatch,Title font weight is lighter than expected for Revenue by Region.,600,400,Sales Overview -> Revenue by Region
+ui,warning,title_font_weight_mismatch,Title font weight is lighter than expected for Region Revenue.,600,400,Sales Overview -> Region Revenue
+ui,warning,padding_too_small,Padding is below the configured minimum for Region Revenue.,>= 8.0px,0px,Sales Overview -> Region Revenue
+ui,error,missing_title,table is missing a visible title.,,,Sales Overview -> Region Revenue

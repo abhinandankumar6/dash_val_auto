@@ -1,0 +1,16 @@
+category,severity,code,message,expected,actual,path
+ui,warning,title_font_weight_mismatch,Title font weight is lighter than expected for Total Revenue.,600,400,Sales Overview -> Total Revenue
+ui,error,missing_title,kpi_card is missing a visible title.,,,Sales Overview -> Total Revenue
+ui,warning,title_font_size_mismatch,Unexpected title font size for Region Performance.,16.0px,32px,Sales Overview -> Total Revenue -> Region Performance
+data,warning,parent_total_missing,Unable to determine a numeric parent total for Drill to Product Category.,,,Sales Overview -> Total Revenue -> Drill to Product Category
+ui,warning,title_font_size_mismatch,Unexpected title font size for Product Category.,16.0px,32px,Sales Overview -> Total Revenue -> Drill to Product Category -> Product Category
+ui,warning,title_font_weight_mismatch,Title font weight is lighter than expected for Category Revenue.,600,400,Sales Overview -> Total Revenue -> Drill to Product Category -> Category Revenue
+ui,warning,padding_too_small,Padding is below the configured minimum for Category Revenue.,>= 8.0px,0px,Sales Overview -> Total Revenue -> Drill to Product Category -> Category Revenue
+ui,error,missing_title,table is missing a visible title.,,,Sales Overview -> Total Revenue -> Drill to Product Category -> Category Revenue
+ui,warning,title_font_weight_mismatch,Title font weight is lighter than expected for Region Revenue.,600,400,Sales Overview -> Total Revenue -> Region Revenue
+ui,warning,padding_too_small,Padding is below the configured minimum for Region Revenue.,>= 8.0px,0px,Sales Overview -> Total Revenue -> Region Revenue
+ui,error,missing_title,table is missing a visible title.,,,Sales Overview -> Total Revenue -> Region Revenue
+ui,warning,title_font_weight_mismatch,Title font weight is lighter than expected for Revenue by Region.,600,400,Sales Overview -> Revenue by Region
+ui,warning,title_font_weight_mismatch,Title font weight is lighter than expected for Region Revenue.,600,400,Sales Overview -> Region Revenue
+ui,warning,padding_too_small,Padding is below the configured minimum for Region Revenue.,>= 8.0px,0px,Sales Overview -> Region Revenue
+ui,error,missing_title,table is missing a visible title.,,,Sales Overview -> Region Revenue

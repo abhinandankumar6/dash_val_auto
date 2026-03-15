@@ -1,0 +1,51 @@
+ui_rules:
+  typography:
+    font_family: "Inter"
+    title_font_size_px: 16
+    title_font_weight: 600
+    value_font_weight: 700
+  layout:
+    min_padding_px: 8
+    max_margin_px: 32
+    text_align_numeric: "right"
+  formatting:
+    currency_symbols: ["$", "₹"]
+    decimal_precision: 2
+    thousand_separator: ","
+    accepted_date_formats:
+      - "%Y-%m-%d"
+      - "%d/%m/%Y"
+      - "%b %d, %Y"
+
+data_rules:
+  rounding_precision: 2
+  allow_variance_percent: 0.1
+  require_child_sum_match: true
+
+chart_rules:
+  kpi_card:
+    require_title: true
+  table:
+    require_title: true
+    require_headers: true
+    numeric_right_aligned: true
+  bar_chart:
+    require_title: true
+    require_axis_labels: true
+    require_legend_if_multi_series: true
+  line_chart:
+    require_title: true
+    require_axis_labels: true
+    require_legend_if_multi_series: true
+  pie_chart:
+    require_title: true
+    require_legend: true
+  multi_series_chart:
+    require_title: true
+    require_axis_labels: true
+    require_legend: true
+
+execution:
+  max_depth: 4
+  retry_attempts: 2
+  click_timeout_ms: 15000

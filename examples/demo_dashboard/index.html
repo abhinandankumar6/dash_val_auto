@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sales Overview</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <style>
+      body { font-family: "Inter", sans-serif; margin: 32px; background: #f6f8fb; color: #172b4d; }
+      .grid { display: grid; grid-template-columns: repeat(2, minmax(280px, 1fr)); gap: 20px; }
+      .kpi-card, .chart-panel { display: block; background: #fff; border: 1px solid #dfe7f3; border-radius: 12px; padding: 20px; text-decoration: none; color: inherit; }
+      .label { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+      .metric { font-size: 28px; font-weight: 700; }
+      table { width: 100%; border-collapse: collapse; margin-top: 16px; background: #fff; }
+      th, td { padding: 12px; border-bottom: 1px solid #e6edf7; }
+      th { text-align: left; font-size: 16px; }
+      td:last-child, th:last-child { text-align: right; }
+    </style>
+  </head>
+  <body>
+    <h1>Sales Overview</h1>
+    <div class="grid">
+      <a class="kpi-card" data-testid="revenue-kpi" href="./region.html">
+        <div class="label">Total Revenue</div>
+        <div class="metric">$1,000.00</div>
+      </a>
+      <a class="chart-panel" data-testid="orders-chart" href="./region.html">
+        <div class="label">Revenue by Region</div>
+        <div>Click to drill into regional breakdown.</div>
+      </a>
+    </div>
+    <table data-testid="summary-table">
+      <thead>
+        <tr><th>Region</th><th>Revenue</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>East</td><td>$400.00</td></tr>
+        <tr><td>West</td><td>$600.00</td></tr>
+      </tbody>
+    </table>
+  </body>
+</html>

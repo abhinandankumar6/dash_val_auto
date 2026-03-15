@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Sales Overview Validation Report</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 24px; color: #1f2933; }
+      h1, h2 { margin-bottom: 8px; }
+      .summary { display: grid; grid-template-columns: repeat(2, minmax(220px, 1fr)); gap: 12px; margin-bottom: 24px; }
+      .card { border: 1px solid #d9e2ec; border-radius: 8px; padding: 12px; background: #f8fbff; }
+      .status { font-weight: 700; }
+      .FAILED { color: #b42318; }
+      .PASSED { color: #027a48; }
+      ul { padding-left: 20px; }
+      .findings li { margin: 4px 0; }
+      .meta { color: #52606d; font-size: 0.9rem; }
+      table { border-collapse: collapse; width: 100%; margin-top: 12px; }
+      th, td { border: 1px solid #d9e2ec; padding: 8px; text-align: left; }
+      th { background: #eef2f6; }
+      .shot { margin: 6px 0; }
+    </style>
+  </head>
+  <body>
+    <h1>Dashboard Validation Report</h1>
+    <div class="summary">
+      <div class="card">
+        <div>Dashboard</div>
+        <strong>Sales Overview</strong>
+      </div>
+      <div class="card">
+        <div>Status</div>
+        <div class="status FAILED">FAILED</div>
+      </div>
+      <div class="card">
+        <div>Platform</div>
+        <strong>generic</strong>
+      </div>
+      <div class="card">
+        <div>Navigation Nodes</div>
+        <strong>4</strong>
+      </div>
+    </div>
+
+    <h2>Workflow</h2>
+    <div class="card">
+      <div>Source: heuristic</div>
+      <div>Keywords: sales, revenue</div>
+      <div>Rationale: Prioritized visuals matching keywords: sales, revenue | Page title: Sales Overview</div>
+    </div>
+
+    <h2>Issues</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Severity</th>
+          <th>Code</th>
+          <th>Message</th>
+          <th>Path</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr>
+          <td>ui</td>
+          <td>warning</td>
+          <td>title_font_weight_mismatch</td>
+          <td>Title font weight is lighter than expected for Total Revenue.</td>
+          <td>Sales Overview -> Total Revenue</td>
+        </tr>
+        
+        <tr>
+          <td>ui</td>
+          <td>error</td>
+          <td>missing_title</td>
+          <td>kpi_card is missing a visible title.</td>
+          <td>Sales Overview -> Total Revenue</td>
+        </tr>
+        
+        <tr>
+          <td>ui</td>
+          <td>warning</td>
+          <td>title_font_weight_mismatch</td>
+          <td>Title font weight is lighter than expected for Revenue by Region.</td>
+          <td>Sales Overview -> Revenue by Region</td>
+        </tr>
+        
+        <tr>
+          <td>ui</td>
+          <td>warning</td>
+          <td>title_font_weight_mismatch</td>
+          <td>Title font weight is lighter than expected for Region Revenue.</td>
+          <td>Sales Overview -> Region Revenue</td>
+        </tr>
+        
+        <tr>
+          <td>ui</td>
+          <td>warning</td>
+          <td>padding_too_small</td>
+          <td>Padding is below the configured minimum for Region Revenue.</td>
+          <td>Sales Overview -> Region Revenue</td>
+        </tr>
+        
+        <tr>
+          <td>ui</td>
+          <td>error</td>
+          <td>missing_title</td>
+          <td>table is missing a visible title.</td>
+          <td>Sales Overview -> Region Revenue</td>
+        </tr>
+        
+      </tbody>
+    </table>
+
+    <h2>Navigation Tree</h2>
+    <ul>
+      <li><div><strong>Sales Overview</strong> <span>(dashboard)</span></div><div class='meta'>Sales Overview</div><div class="shot"><a href="output/screenshots/44bf0e39-a0ea-4b95-b310-03ef58e8e20e/dashboard-root.png">Screenshot</a></div><ul><li><div><strong>Total Revenue</strong> <span>(kpi_card)</span></div><div class='meta'>Sales Overview -> Total Revenue</div><div class="shot"><a href="output/screenshots/44bf0e39-a0ea-4b95-b310-03ef58e8e20e/total-revenue-v-1.png">Screenshot</a></div><ul class='findings'><li><strong>WARNING</strong> Title font weight is lighter than expected for Total Revenue.</li><li><strong>ERROR</strong> kpi_card is missing a visible title.</li></ul></li><li><div><strong>Revenue by Region</strong> <span>(unknown)</span></div><div class='meta'>Sales Overview -> Revenue by Region</div><div class="shot"><a href="output/screenshots/44bf0e39-a0ea-4b95-b310-03ef58e8e20e/revenue-by-region-v-2.png">Screenshot</a></div><ul class='findings'><li><strong>WARNING</strong> Title font weight is lighter than expected for Revenue by Region.</li></ul></li><li><div><strong>Region Revenue</strong> <span>(table)</span></div><div class='meta'>Sales Overview -> Region Revenue</div><div class="shot"><a href="output/screenshots/44bf0e39-a0ea-4b95-b310-03ef58e8e20e/region-revenue-v-3.png">Screenshot</a></div><ul class='findings'><li><strong>WARNING</strong> Title font weight is lighter than expected for Region Revenue.</li><li><strong>WARNING</strong> Padding is below the configured minimum for Region Revenue.</li><li><strong>ERROR</strong> table is missing a visible title.</li></ul></li></ul></li>
+    </ul>
+  </body>
+</html>
